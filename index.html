@@ -313,7 +313,7 @@ input,select,textarea{background:var(--panel);border-radius:10px}
 .edit-cues textarea{width:100%;min-height:8rem;margin-top:.4rem}
 </style>
 <meta name="aviones-handoff" content="El plan de exportación y CapCut está en dataset.production. Las ventanas de entrega están en exportBatches; los tiempos editoriales, en rows.">
-<meta name="aviones-build" content="8f3cd8c0a124cfd9">
+<meta name="aviones-build" content="28d787295330eca7">
 </head>
 <body>
 <header class="top"><div class="wrap"><div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 14 22 4l-8 17-3-7-9 0Zm9 0 11-10"/></svg></span> MESA DE EDICIÓN / RC</div><div class="row"><button id="appTools" class="primary" aria-label="Instalación y uso sin conexión">App</button><details class="project-tools" id="projectTools"><summary>Proyecto</summary><div class="project-menu"><button id="exportJson">Exportar JSON</button><button id="exportCsv">Exportar CSV</button><button id="importBtn">Importar</button></div></details><input id="importFile" type="file" accept=".json,.csv" hidden></div></div></header>
@@ -2109,7 +2109,7 @@ function paintChannelFilm(cue){
   film.hidden=!visible;
   if(!visible){if(!film.paused) film.pause();return false;}
   const time=Math.min(preview.time,Math.max(0,film.duration-1/30));
-  if(!film.seeking&&(!preview.playing||film.paused)&&Math.abs(film.currentTime-time)>.018) film.currentTime=time;
+  if((!preview.playing||film.paused)&&Math.abs(film.currentTime-time)>.018) film.currentTime=time;
   if(preview.playing&&film.paused&&!film.ended&&!filmPlayPending){
     filmPlayPending=true;
     film.play().catch(error=>{
