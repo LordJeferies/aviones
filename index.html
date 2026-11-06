@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#101716">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f4fa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b111c">
 <meta name="apple-mobile-web-app-title" content="Aviones RC">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon-192.png">
@@ -148,8 +149,115 @@ button,a,input,select,textarea{touch-action:manipulation}
 }
 .wiz-editor>*{min-width:0}.wiz-thumbs{max-width:100%}.wiz-mini-header{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}.wiz-mini-header button{font-size:.76rem}
 @media(max-width:760px){.wiz-editor{grid-template-columns:minmax(0,1fr)}}
+:root{
+  color-scheme:light dark;
+  --bg:#f1f4fa;--panel:#fff;--panel2:#edf1f8;--ink:#142038;--muted:#4e5d73;--line:#ccd6e5;
+  --mint:#1d539f;--accent-fill:#174c9e;--accent-on:#fff;--selected:#e1ebfc;--pressed:#d7e5fa;
+  --amber:#79531f;--steel:#345c96;--rose:#a53442;--success:#27613f;--success-bg:#e4f3e9;
+  --focus:#225fbb;--tint-shadow:#13295219;--glass:#f9fbffed;--warning-bg:#fff2db;--well:#e4eaf4;
+  --icon-bg:#e3ebfb;--media-bg:#0b1321;--eyebrow:#375d96;
+  --banner:linear-gradient(128deg,#f8fbff,#e6eefe 100%);
+  --shot-top:max(8px,env(safe-area-inset-top,0px));
+}
+@media(prefers-color-scheme:dark){
+ :root{
+  --bg:#0b111c;--panel:#141e2e;--panel2:#1b2940;--ink:#f1f5ff;--muted:#bdcbe0;--line:#344561;
+  --mint:#b6ceff;--accent-fill:#b8ceff;--accent-on:#102448;--selected:#233a60;--pressed:#2d4874;
+  --amber:#f5d098;--steel:#a6c7fd;--rose:#ffafb8;--success:#a7e7bf;--success-bg:#19372e;
+  --focus:#bed4ff;--tint-shadow:#03070e77;--glass:#152035ed;--warning-bg:#3a2d23;--well:#24334b;
+  --icon-bg:#243a5f;--eyebrow:#b2c9f4;--banner:linear-gradient(128deg,#202f4a,#172237 100%);
+ }
+}
+@media(prefers-contrast:more){
+ :root{--line:#667990;--muted:#27374e;--glass:var(--panel)}
+}
+@media(prefers-contrast:more) and (prefers-color-scheme:dark){
+ :root{--line:#9aacca;--muted:#e0eaff}
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.55}
+h1,h2,h3{text-wrap:balance}
+.eyebrow{color:var(--eyebrow);letter-spacing:.095em}
+.top{background:var(--panel)}
+.brand .mark{background:var(--icon-bg);border-color:transparent;border-radius:9px}
+.hero{background:#101e32;color:#f3f7ff}
+.hero::after{background:linear-gradient(90deg,#0b1628 1%,#0b1628ed 26%,#0b162878 70%,#0b16283b),linear-gradient(0deg,#0b1628a5,transparent 55%)}
+.hero .eyebrow{color:#cbddff}.hero p{color:#e8effb}.hero .shotlabel{color:#fff;background:#101b2ae8}
+button,.project-tools summary{min-height:44px;border-radius:12px;font-weight:620}
+button{min-width:44px;background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+button:hover:not(:disabled),.project-tools summary:hover{background:var(--selected);color:var(--ink);border-color:var(--mint)}
+button:active:not(:disabled),.project-tools summary:active{background:var(--pressed);transform:scale(.985)}
+button.primary{background:var(--accent-fill);color:var(--accent-on);border-color:transparent;font-weight:700}
+button.primary:hover:not(:disabled){background:color-mix(in srgb,var(--accent-fill),var(--panel) 12%);color:var(--accent-on);border-color:transparent}
+button.primary:active:not(:disabled){background:color-mix(in srgb,var(--accent-fill),var(--ink) 14%);color:var(--accent-on)}
+button:disabled{opacity:.57}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+input,select,textarea{background:var(--panel);border-radius:10px}
+.hero button:not(.primary){background:#15253bdc;color:#f4f7ff;border-color:#8ba1c17c}
+.hero button.primary{background:#e8f0ff;color:#143463}
+.hero button:hover:not(:disabled){background:#cfdefa;color:#12325e}
+.project-tools summary{background:var(--panel2)}
+.project-tools[open] .project-menu{box-shadow:0 8px 26px var(--tint-shadow)}
+.summary{border-radius:16px}
+.stat strong{font-family:inherit;font-variant-numeric:tabular-nums;font-weight:730;color:var(--ink)}
+.panel{border-radius:17px}
+.guide-banner,.wizard-banner{background:var(--banner)}
+.frame,.frame img,.preview-stage,.wiz-stage,.cut-grid button,.cut-grid img,.wiz-thumbs img,.wiz-dialog-img,.guide-dialog video{background:var(--media-bg)}
+.frame .time,.preview-stage .stage-source,.preview-stage .stage-model,.preview-stage .stage-cut,.wiz-stage .mono{background:#101a2bea;color:#f2f6ff}
+.preview-start{color:#f1f6ff;background:#122238f3;border-color:#b6ceff;box-shadow:0 0 0 5px #14234555}
+.preview-start:hover:not(:disabled){background:#294466;color:#fff}
+.preview-copy{background:var(--panel2)}
+.preview-mode[aria-pressed=true],.wiz-format[aria-pressed=true],.wizard-phases [aria-current=step],.wiz-rail [aria-pressed=true],.scene-select[aria-current=true],.wiz-thumbs button[aria-pressed=true]{color:var(--mint);background:var(--selected);border-color:var(--mint)}
+.scene-select[aria-current=true]{box-shadow:inset 3px 0 var(--mint)}
+.pill{background:var(--selected);color:var(--mint)}
+.pill.warn,.notice{background:var(--warning-bg);color:var(--amber)}
+.status,.guide-source-status{color:var(--success)}
+.status.error,.danger,.shot button[data-delete-shot]{color:var(--rose)}
+.app-notice{color:var(--mint);background:var(--selected)}
+.bar,.ruler{background:var(--well)}
+.ruler button{color:var(--accent-on);background:var(--accent-fill);min-width:0;min-height:0}
+.ruler button:hover:not(:disabled){background:var(--accent-fill);color:var(--accent-on)}
+.ruler button[aria-current=true]{box-shadow:inset 0 -4px var(--accent-on)}
+.wiz-stage .wiz-safe{border-color:#b7d2ffb3}
+.wiz-rail .is-done small{color:var(--success)}
+.wiz-fold summary,.wizard-help summary{min-height:44px}
+.wiz-thumbs button{border-radius:9px}
+.wiz-order-row{background:var(--panel2)}
+@media(min-width:761px){
+ .nav{border:1px solid var(--line);padding:4px;background:var(--panel2);border-radius:14px;gap:3px}
+ .nav .tab{flex:1;min-height:44px;border:0;border-radius:10px;font-family:inherit;font-size:.85rem;white-space:normal}
+ .tab[aria-selected=true]{background:var(--panel);color:var(--mint);box-shadow:0 1px 5px var(--tint-shadow);font-weight:760}
+}
+@media(max-width:760px){
+ .nav{background:var(--glass);backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%);box-shadow:0 -5px 24px var(--tint-shadow)}
+ .nav .tab{min-width:0;font-family:inherit;font-size:.67rem;box-shadow:none;background:transparent}
+ .nav .tab[aria-selected=true]{background:var(--selected);color:var(--mint);font-weight:760}
+ .hero::after{background:linear-gradient(90deg,#0b1628f5,#0b162875),linear-gradient(0deg,#0b1628a8,transparent)}
+ .top .wrap{padding-top:max(7px,env(safe-area-inset-top,0px))}
+}
+@media(prefers-reduced-motion:reduce){button:active:not(:disabled),.project-tools summary:active{transform:none}}
+@media(prefers-reduced-transparency:reduce){.nav,.shot-dock{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--panel)!important}}
+.shot-dock{position:sticky;top:var(--shot-top);z-index:6;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;margin:10px 0 12px;padding:9px 11px 9px 13px;border:1px solid var(--line);border-radius:16px;background:var(--glass);box-shadow:0 8px 22px var(--tint-shadow);backdrop-filter:blur(18px) saturate(135%);-webkit-backdrop-filter:blur(18px) saturate(135%)}
+.shot-dock-copy{min-width:0}.shot-dock .shot-dock-context,.shot-dock .shot-dock-title,.shot-dock .shot-dock-meta{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot-dock-context{font-size:.71rem;font-weight:690;color:var(--mint)}
+.shot-dock-title{font-size:1rem;color:var(--ink);line-height:1.24}
+.shot-dock-meta{font-size:.71rem;color:var(--muted)}
+.shot-dock-actions{display:flex;gap:5px}
+.shot-dock-actions button{display:grid;place-items:center;min-height:44px;width:44px;padding:0}
+.shot-dock-actions svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.preview-scope{display:flow-root}
+@media(max-width:760px){
+ .shot-dock{gap:5px;padding:8px;margin:8px 0 10px;border-radius:14px}
+ .shot-dock-title{font-size:.88rem}.shot-dock-context,.shot-dock-meta{font-size:.66rem}
+ .shot-dock-actions{gap:4px}
+}
+@media print{.shot-dock{display:none!important}}
+#wizRecipe{scroll-margin-top:calc(91px + var(--shot-top))}
+@media(min-width:761px){.guide-nav{top:calc(90px + var(--shot-top))}}
+@media(max-width:760px){
+ .shot-dock .shot-dock-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal}
+}
 </style>
-<meta name="aviones-build" content="5adb3910421be3ea">
+<meta name="aviones-build" content="38226a7abe7ada35">
 </head>
 <body>
 <header class="top"><div class="wrap"><div class="brand"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 14 22 4l-8 17-3-7-9 0Zm9 0 11-10"/></svg></span> MESA DE EDICIÓN / RC</div><div class="row"><button id="appTools" class="primary" aria-label="Instalación y uso sin conexión">App</button><details class="project-tools" id="projectTools"><summary>Proyecto</summary><div class="project-menu"><button id="exportJson">Exportar JSON</button><button id="exportCsv">Exportar CSV</button><button id="importBtn">Importar</button></div></details><input id="importFile" type="file" accept=".json,.csv" hidden></div></div></header>
@@ -172,7 +280,7 @@ button,a,input,select,textarea{touch-action:manipulation}
 <button class="tab" data-tab="coverage" aria-selected="false" role="tab" id="tab-coverage" aria-controls="coverage"><svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16M7 16v-4m5 4V8m5 8V5"/></svg><span class="tab-full">06 · Cobertura</span><span class="tab-short">Cobertura</span></button>
 </nav>
 <section id="intro" role="tabpanel" aria-labelledby="tab-intro">
-<div class="panel preview" id="preview" aria-label="Reproductor del montaje">
+<div class="preview-scope"><div class="shot-dock" id="previewDock" aria-label="Plano actual" hidden><div class="shot-dock-copy" role="status"><span class="shot-dock-context"></span><strong class="shot-dock-title"></strong><span class="shot-dock-meta mono"></span></div><div class="shot-dock-actions"><button id="previewDockPrev"  aria-label="Plano anterior" title="Plano anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button id="previewDockNext"  aria-label="Plano siguiente" title="Plano siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div></div><div class="panel preview" id="preview" aria-label="Reproductor del montaje">
   <div class="preview-head">
     <div><div class="eyebrow">Previsualización editorial</div><h2>Pase visual</h2></div>
     <div class="row" role="group" aria-label="Alcance de la reproducción">
@@ -213,7 +321,7 @@ button,a,input,select,textarea{touch-action:manipulation}
     <label class="field">Ritmo <select id="previewSpeed"><option value="real">De montaje</option><option value="quick">Vista rápida</option></select></label>
   </div>
   <p class="preview-foot" id="previewHelp">Fotogramas de referencia y texto editorial. Pase sin audio.</p>
-</div>
+</div></div>
 
 <div class="section-head"><div><div class="eyebrow">Secuencia de apertura</div><h2>Cuatro modelos, una jornada de vuelo</h2><p>Las imágenes provienen de los archivos fuente. Los tiempos de salida, los cortes y el diseño sonoro forman parte de la propuesta editable.</p></div><button class="primary" data-go="timeline">Abrir montaje</button></div>
 <div id="board" class="board-grid"></div></section>
@@ -235,7 +343,7 @@ button,a,input,select,textarea{touch-action:manipulation}
     <div class="row"><button class="primary" id="guidePlay">▶ Reproducir desde esta escena</button><button id="guideCsv">Descargar lista de cortes · CSV</button><button id="guideBind">Vincular archivos originales</button><input type="file" id="guideFiles" accept=".mov,.mp4,.m4v,video/*" multiple hidden></div>
     <p id="guideFileStatus" class="guide-source-status" role="status">Opcional. Vincula tus MOV para abrirlos desde su IN, si el navegador admite el archivo.</p>
   </div>
-  <div class="guide-layout">
+  <div class="shot-dock" id="guideDock" aria-label="Plano actual" hidden><div class="shot-dock-copy" role="status"><span class="shot-dock-context"></span><strong class="shot-dock-title"></strong><span class="shot-dock-meta mono"></span></div><div class="shot-dock-actions"><button id="guideDockPrev"  aria-label="Plano anterior" title="Plano anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button id="guideDockNext"  aria-label="Plano siguiente" title="Plano siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div></div><div class="guide-layout">
     <aside class="panel guide-nav" aria-label="Elegir escena de la guía">
       <label class="field">Acto<select id="guideAct"></select></label>
       <label class="field">Escena<select id="guideScene"></select></label>
@@ -276,14 +384,14 @@ button,a,input,select,textarea{touch-action:manipulation}
   <div class="wizard-phases" id="wizPhases" aria-label="Etapas del asistente">
     <button data-phase="prepare">01 <span>Preparar</span></button><button data-phase="order">02 <span>Armar</span></button><button data-phase="edit">03 <span>Editar</span></button><button data-phase="finish">04 <span>Revisar</span></button>
   </div>
-  <div id="wizBody"></div>
+  <div class="shot-dock" id="wizDock" aria-label="Plano actual" hidden><div class="shot-dock-copy" role="status"><span class="shot-dock-context"></span><strong class="shot-dock-title"></strong><span class="shot-dock-meta mono"></span></div><div class="shot-dock-actions"><button id="wizDockPrev" data-wiz-prev aria-label="Plano anterior" title="Plano anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button id="wizDockNext" data-wiz-next aria-label="Plano siguiente" title="Plano siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div></div><div id="wizBody"></div>
   <details class="panel wizard-help" id="wizTutorial">
     <summary>Cómo usar el tablero</summary>
     <ol>
       <li><b>Elige formato.</b> Horizontal sirve para el episodio principal. Vertical muestra el encuadre 9:16 y guarda su propio progreso. Cambia el formato también en el proyecto de CapCut.</li>
       <li><b>Preparar.</b> Reúne los MOV y las fotos. Crea el proyecto, fija la relación de aspecto e importa los archivos en Medios.</li>
       <li><b>Armar.</b> Despliega los actos. Ordena los planos en V1 por su tiempo de montaje y usa el IN/OUT de origen para encontrar la acción dentro del archivo.</li>
-      <li><b>Editar.</b> Pulsa un acto, una escena y un plano en la línea de tiempo. Usa ‹ y › para comparar fotogramas, toca una miniatura para ampliarla o adjunta una referencia propia al paso.</li>
+      <li><b>Editar.</b> Pulsa un acto, una escena y un plano en la línea de tiempo. El indicador fijo muestra el número, el archivo y el tiempo del plano actual. Sus flechas cambian de plano. Usa ‹ y › para comparar fotogramas, toca una miniatura para ampliarla o adjunta una referencia propia al paso.</li>
       <li><b>Aplica solo lo que pide ese plano.</b> Los acordeones separan corte, encuadre, audio, texto y X-roll. A-roll es imagen o voz principal. B-roll es apoyo. Aquí X-roll significa un insert muy breve de detalle o ambiente que acentúa un gesto o un cambio.</li>
       <li><b>Marca el paso listo.</b> El botón guarda el progreso y avanza. Usa la línea de tiempo para volver. La opción Proyecto exporta la escaleta, y la lista de cortes sirve como referencia al lado de CapCut.</li>
     </ol>
@@ -821,6 +929,7 @@ function paintPreview(){
   const cue=preview.cues[i];
   if(i!==preview.index||i<0){
     preview.index=i;
+    updatePreviewDock(i,cue);
     const title=$('previewTitle');
     title.textContent=cue?.title||'';
     $('previewModel').textContent=cue?.model||'';
@@ -1012,7 +1121,7 @@ function renderGuide(){
   $('guideMetrics').innerHTML='<span><b>'+visibleCuts+'</b> pasos de montaje</span><span><b>'+data.imageCount+'</b> imágenes originales integradas</span><span><b>'+fmt(sum(project.scenes))+'</b> de escaleta</span>';
   if(!scene){
     $('guideScene').innerHTML='';$('guidePrev').disabled=true;$('guideNext').disabled=true;
-    sheet.innerHTML='<div class="panel">Agrega una escena en Montaje.</div>';return;
+    sheet.innerHTML='<div class="panel">Agrega una escena en Montaje.</div>';resetGuideDock();return;
   }
   guideSceneId=scene.id;
   $('guideScene').innerHTML=opts(project.scenes.filter(s=>s.act===scene.act).map(s=>[s.id,s.title]),scene.id);
@@ -1029,6 +1138,7 @@ function renderGuide(){
     '<div class="row"><button data-select="'+scene.id+'">Editar escena</button></div></article>'+
     cuts.map(c=>guideCard(c,start)).join('')+
     (scene.notes?'<article class="panel"><h3>Notas de la escaleta</h3><p class="spaced">'+esc(scene.notes)+'</p></article>':'');
+  resetGuideDock();
 }
 function guideCard(c,start){
   const frames=c.frames;
@@ -1053,7 +1163,8 @@ function showGuide(sceneId,index){
   if($('clipDialog').open) $('clipDialog').close();
   guideSceneId=sceneId;
   tab('guide');
-  ($('guide-cut-'+index)||$('guide')).scrollIntoView({block:'start'});
+  if(Number.isInteger(index)) scrollToGuideCard(index);
+  else $('guide').scrollIntoView({block:'start'});
 }
 function exportGuide(){
   const rows=[['acto','escena','paso','titulo','tipo','montaje_in_s','montaje_out_s','archivo','origen_in_s','origen_out_s','imagen_corte','audio_transicion','decision_escena']];
@@ -1190,7 +1301,7 @@ function wizardProgress(rows){
   return done;
 }
 function renderWizard(){
-  stopWizSequence();syncWizardFormat();
+  stopWizSequence();syncWizardFormat();$('wizDock').hidden=true;
   const rows=wizardCuts();
   const done=wizardProgress(rows);
   $('wizStart').textContent=wizState.started?'▶ Continuar edición':'▶ Empezar a crear el video';
@@ -1276,6 +1387,7 @@ function fold(label,body,open=false){return '<details class="wiz-fold" '+(open?'
 function renderWizEdit(rows,done){
   const c=selectedCut(rows),index=rows.indexOf(c);
   wizState.step=c.key;
+  updateWizDock(rows,index);
   const actsInUse=data.acts.filter(a=>rows.some(x=>x.scene.act===a.id));
   const inAct=project.scenes.filter(s=>s.act===c.scene.act);
   const inScene=rows.filter(x=>x.scene.id===c.scene.id);
@@ -1465,6 +1577,85 @@ $('heroWizard').addEventListener('click',()=>{
   $('wizStart').focus({preventScroll:true});
 });
 syncWizardFormat();
+function renderShotDock(id,context,title,meta,previous,next){
+  const dock=$(id);
+  dock.hidden=!title;
+  if(!title) return;
+  const text=[context,title,meta];
+  dock.querySelectorAll('.shot-dock-copy > *').forEach((el,i)=>{
+    if(el.textContent!==text[i]){el.textContent=text[i];el.title=text[i];}
+  });
+  $(id+'Prev').disabled=!previous;
+  $(id+'Next').disabled=!next;
+}
+function updateWizDock(rows,index){
+  const c=rows[index];
+  renderShotDock('wizDock',c?'Plano '+(index+1)+' de '+rows.length+' · '+c.scene.title:'',
+    c?.title,timeSpan(c?.startAt||0,c?.endAt||0)+' · '+(c?.source?.file||kindLabels[c?.kind]||'Paso editorial'),
+    index>0,index<rows.length-1);
+}
+function updatePreviewDock(index,cue){
+  renderShotDock('previewDock',cue?'Plano '+(index+1)+' de '+preview.cues.length+' · '+cue.scene.title:'',
+    cue?.beat,timeSpan(cue?.editStart||0,cue?.editEnd||0)+' · '+(cue?.clip?.file||kindLabels[cue?.kind]||'Paso editorial'),
+    index>0,index<preview.cues.length-1);
+}
+let guideDockRows=[],guideDockIndex=-1,guideScrollRequest=0;
+function resetGuideDock(){
+  guideDockRows=wizardCuts();
+  guideDockIndex=-1;
+  const index=guideDockRows.findIndex(c=>c.scene.id===guideSceneId);
+  updateGuideDock(index);
+  scheduleGuideDock();
+}
+function updateGuideDock(index){
+  if(guideDockIndex===index&&index>=0) return;
+  guideDockIndex=index;
+  const c=guideDockRows[index];
+  renderShotDock('guideDock',c?'Plano '+(index+1)+' de '+guideDockRows.length+' · '+c.scene.title:'',
+    c?.title,timeSpan(c?.startAt||0,c?.endAt||0)+' · '+(c?.source?.file||kindLabels[c?.kind]||'Paso editorial'),
+    index>0,index>=0&&index<guideDockRows.length-1);
+}
+function trackGuideDock(){
+  guideScrollRequest=0;
+  if(active!=='guide') return;
+  const cards=[...$('guideSheet').querySelectorAll('.guide-cut')];
+  if(!cards.length) return;
+  const readingLine=$('guideDock').getBoundingClientRect().bottom+24;
+  let cardIndex=0;
+  for(let i=1;i<cards.length;i++){
+    if(cards[i].getBoundingClientRect().top<=readingLine) cardIndex=i;
+    else break;
+  }
+  updateGuideDock(guideDockRows.findIndex(c=>c.scene.id===guideSceneId&&c.index===cardIndex));
+}
+function scheduleGuideDock(){
+  if(active==='guide'&&!guideScrollRequest) guideScrollRequest=requestAnimationFrame(trackGuideDock);
+}
+function scrollToGuideCard(index){
+  const card=$('guide-cut-'+index);
+  if(!card) return;
+  const dock=$('guideDock');
+  const gap=16+parseFloat(getComputedStyle(dock).top||'8');
+  window.scrollBy({top:card.getBoundingClientRect().top-dock.offsetHeight-gap});
+  scheduleGuideDock();
+}
+function moveGuideDock(direction){
+  const targetIndex=guideDockIndex+direction;
+  const next=guideDockRows[targetIndex];
+  if(!next) return;
+  if(next.scene.id!==guideSceneId){
+    guideSceneId=next.scene.id;
+    renderGuide();
+  }
+  updateGuideDock(targetIndex);
+  scrollToGuideCard(next.index);
+}
+$('guideDockPrev').addEventListener('click',()=>moveGuideDock(-1));
+$('guideDockNext').addEventListener('click',()=>moveGuideDock(1));
+$('previewDockPrev').addEventListener('click',()=>$('previewPrev').click());
+$('previewDockNext').addEventListener('click',()=>$('previewNext').click());
+addEventListener('scroll',scheduleGuideDock,{passive:true});
+addEventListener('resize',scheduleGuideDock);
 
 refresh();
 $('projectTools').addEventListener('click',event=>{if(event.target.closest('button')) $('projectTools').open=false;});
