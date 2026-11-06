@@ -1,6 +1,6 @@
 'use strict';
 const PREFIX='aviones-rc-pwa-';
-const CACHE=PREFIX+'38226a7abe7ada35';
+const CACHE=PREFIX+'75b6250454ba5e62';
 const OFFLINE_CACHE=PREFIX+'media-edcba25876883355';
 const scope=new URL(self.registration.scope);
 const local=path=>new URL(path,scope).href;
